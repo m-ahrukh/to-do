@@ -1,10 +1,8 @@
 "use client";
 
-// import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
-import Head from "next/head";
 import { useEffect, useState } from "react";
 
 const geistSans = localFont({
@@ -17,15 +15,6 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
-// export const metadata: Metadata = {
-//   title: "To Do Application",
-//   description: "Creating To Do Application using NextJs",
-//   icons: {
-//     icon: '/app_icon (2).ico',
-//     shortcut: '/app_icon (2).ico',
-//   },
-// };
 
 export default function RootLayout({
   children,

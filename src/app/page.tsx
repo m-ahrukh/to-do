@@ -1,7 +1,14 @@
 import Link from 'next/link'
-import { GET, POST, DELETE } from "./api/route";
+import { GET} from "./api/route";
 import { redirect } from 'next/navigation'
 import { AddTaskForm } from './AddTaskForm';
+import { pool } from '@/utils/dbConnect';
+
+interface DataRow {
+  id: number;
+  text: string;
+  uuid: string;
+}
 
 export default async function Home() {
 
@@ -10,22 +17,26 @@ export default async function Home() {
   if (!responseData) {
     return null
   }
-  const result = responseData.result || []
+  const result: DataRow[] = responseData.result || []
 
   //Insert Query
-  async function addTask(data: any) {
+  async function addTask(data: FormData) {
     'use server'
     const note = data.get("note")?.toString();
 
-    await POST(note)
+    // await POST(note)
+    const randomString = crypto.randomUUID();
+    await pool.query("INSERT INTO todo_app(text, uuid) VALUES ($1, $2) RETURNING *", [note, randomString])
+
     redirect('/')
   }
 
   //Delete Query
-  async function deleteTask(data: any) {
+  async function deleteTask(data: FormData) {
     'use server'
-    let id = data.get('id').valueOf()
-    await DELETE(id)
+    const id = data.get('id')?.valueOf()
+    // await DELETE(id)
+    await pool.query('DELETE FROM todo_app WHERE id = $1', [id])
     redirect('/')
   }
 
@@ -43,7 +54,7 @@ export default async function Home() {
         {result.length === 0 ? (
           <p className='text-center text-gray-500 mt-5'>Phew, there is nothing to do</p>
         ) : (
-          result.map((dataRow: any) => {
+          result.map((dataRow: DataRow) => {
 
             return (
               <div key={dataRow.id} className='flex flex-row mt-4'>
