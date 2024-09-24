@@ -1,8 +1,8 @@
 'use server'
 import Link from 'next/link'
-import { AddTaskForm } from './AddTaskForm';
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
+import { AddTaskForm } from './AddTaskForm';
 import { DeleteTaskForm } from './DeleteTaskForm';
 
 export interface DataRow {
@@ -32,6 +32,7 @@ export default async function Home() {
   );
 
   return (
+
     <main className=' mt-10 flex flex-col justify-center items-center '>
       <h1 className='font-bold' style={{ fontSize: '24px' }}>To Do Application</h1>
       <div className='mb-3 mx-5'>
