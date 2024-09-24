@@ -3,19 +3,13 @@
 import { supabase } from '@/utils/supabase/client';
 
 interface DeleteTaskFormProps {
-    id: number; // Accept id as a prop
+    id: number; 
 }
-
 
 export function DeleteTaskForm({id}:DeleteTaskFormProps) {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         console.log("id: ", id)
-
-        // const form = e.target as HTMLFormElement;
-        // const formData = new FormData(form);
-        // const id = formData.get('id');
 
         if (!id) return;
 

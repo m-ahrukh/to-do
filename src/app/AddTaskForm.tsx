@@ -23,9 +23,10 @@ export function AddTaskForm() {
         return
       }
 
-      form.reset(); 
+      form.reset();
       window.location.reload();
   };
+
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center">
