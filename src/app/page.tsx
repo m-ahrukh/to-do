@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import { AddTaskForm } from './AddTaskForm';
-import { DeleteTaskForm } from './DeleteTaskForm';
+import { DeleteTaskForm } from './deleteTaskForm';
 
 export interface DataRow {
   id: number;
