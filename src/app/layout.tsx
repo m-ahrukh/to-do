@@ -42,14 +42,14 @@ export default function RootLayout({
       <head>
         <title>To Do Application</title>
         <meta name="description" content="Creating To Do Application using NextJs" />
-        <link rel="icon" href="/app_icon (2).ico" />
-        <link rel="shortcut icon" href="/app_icon (2).ico" />
+        <link rel="icon" href="/app_icon.ico" sizes="any" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header className="bg-blue-500 w-full py-4 px-6">
           <div className="flex justify-between items-center">
+
             {/* Logo */}
             <div className="text-white font-bold text-2xl">
               <Link href="/">
