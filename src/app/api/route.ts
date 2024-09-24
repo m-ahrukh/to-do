@@ -1,19 +1,51 @@
 import dbConnect, { pool } from "@/utils/dbConnect";
+// import { supabase } from "@/utils/supabaseClient";
 import { NextResponse } from "next/server";
+import { DataRow } from "../page";
 
 dbConnect()
 
-export async function GET() {
-    const data = await pool.query("SELECT * FROM todo_app ORDER BY id ASC")
-    const result = data.rows
-    return NextResponse.json({
-        result
-    })    
-}
+// export async function GET() {
+//     // const data = await pool.query("SELECT * FROM todo_app ORDER BY id ASC")
+//     // const result = data.rows
+//     // return NextResponse.json({
+//     //     result
+//     // })   
+//     const { data, error } = await supabase
+//         .from('todo_app')
+//         .select('*')
+//         .order('id', { ascending: true });
+
+//     if (error) {
+//         throw error;
+//     }
+
+//     return data;
+// }
+
+// export async function GET(): Promise<DataRow[]> {
+//     const { data, error } = await supabase
+//         .from('todo_app')
+//         .select('*')
+//         .order('id', { ascending: true });
+
+//     if (error) {
+//         console.error("Error fetching data from Supabase: ", error);
+//         throw error;
+//     }
+
+//     if (!data || data.length === 0) {
+//         console.warn("No data found in todo_app table.");
+//       } else {
+//         console.log("Fetched Data: ", data);
+//       }
+    
+//     return data as DataRow[];
+// }
 
 // export async function POST(data: string) {
 //     try{
-//         const randomString = crypto.randomUUID(); 
+//         const randomString = crypto.randomUUID();
 //         const newNote = await pool.query("INSERT INTO todo_app(text, uuid) VALUES ($1, $2) RETURNING *", [data, randomString])
 //         const result = newNote.rows[0]
 //         return NextResponse.json({

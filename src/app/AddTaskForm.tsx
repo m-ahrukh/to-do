@@ -1,42 +1,34 @@
 'use client';
 
-// export function AddTaskForm({ onSubmit }: { onSubmit: (formData: FormData) => Promise<void> }) {
-//   return (
-//     <form
-//       className="flex flex-col justify-center items-center"
-//       onSubmit={async (e) => {
-//         e.preventDefault();
-//         const form = e.target as HTMLFormElement;
-//         const formData = new FormData(form);
-//         await onSubmit(formData);
-//         form.reset(); 
-//       }}
-//     >
-//       <input
-//         type="text"
-//         name="note"
-//         id="note"
-//         placeholder="Add Note"
-//         className="shadow-lg rounded-md shadow-black h-10 p-3 mb-6"
-//         required
-//       />
-//       <button type="submit" className="bg-orange-500 font-bold text-white hover:bg-red-600 p-3 rounded-md">
-//         SUBMIT
-//       </button>
-//     </form>
-//   );
-// }
+import { supabase } from '@/utils/supabase/client';
 
-export function AddTaskForm({ onSubmit }: { onSubmit: (data: FormData) => Promise<void> }) {
+export function AddTaskForm() {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const note = formData.get('note');
+
+    console.log("note: ", note)
+
+    if (!note) return;
+
+      const randomString = crypto.randomUUID();
+      const { error } = await supabase
+        .from('todo_app')
+        .insert([{ text: note, uuid: randomString }])
+      if (error) {
+        console.error('Error inserting data:', error)
+        return
+      }
+
+      form.reset(); 
+      window.location.reload();
+  };
+
   return (
-    <form onSubmit={async (e) => {
-      e.preventDefault();
-      const form = e.target as HTMLFormElement;
-      const formData = new FormData(form);
-      await onSubmit(formData);
-      form.reset();
-    }}
-      action={onSubmit} className="flex flex-col items-center">
+    <form onSubmit={handleSubmit} className="flex flex-col items-center">
       <input
         type="text"
         name="note"
