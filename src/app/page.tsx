@@ -12,11 +12,11 @@ export interface DataRow {
   uuid: string;
 }
 
-interface ThemeProp{
-  theme: string
+export interface ThemeProp{
+  theme: string;
 }
 
-export default async function Home({ theme }: ThemeProp) {
+export default async function Home({theme}: ThemeProp) {
 
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
