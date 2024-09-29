@@ -11,7 +11,7 @@ export interface DataRow {
   uuid: string;
 }
 
-export default async function Home() {
+export default async function Home({ theme }: { theme: string }) {
 
   const cookieStore = cookies()
   const supabase = createClient(cookieStore)
@@ -42,22 +42,24 @@ export default async function Home() {
         <AddTaskForm />
       </div>
 
-      {tasks.length === 0 ? noTasksMessage : (
-        tasks.map((dataRow: DataRow) => (
-          <div key={dataRow.id} className='flex flex-row mt-4'>
-            <div className='flex flex-row gap-5 w-1/2 my-4'>
-              <p>{dataRow.text}</p>
+      <div className={`border ${theme === 'dark' ? 'border-gray-700' : 'border-gray-300'} rounded-lg p-4 shadow-md`}>
+        {tasks.length === 0 ? noTasksMessage : (
+          tasks.map((dataRow: DataRow) => (
+            <div key={dataRow.id} className='flex flex-row gap-5 items-center'>
+              <div className='flex flex-row gap-5 w-1/2 my-4'>
+                <p>{dataRow.text}</p>
+              </div>
+              <div className='w-1/2 flex flex-row gap-5 items-center justify-end'>
+                <Link href={'/edit/' + dataRow.uuid}>
+                  <button className='bg-cyan-600 font-bold text-white p-2 rounded-sm'>UPDATE</button>
+                </Link>
+                <DeleteTaskForm id={dataRow.id} />
+              </div>
             </div>
-            <div className='w-1/2 flex flex-row gap-5 my-2'>
-              <Link href={'/edit/' + dataRow.uuid}>
-                <button className='bg-cyan-600 font-bold text-white p-2 rounded-sm'>UPDATE</button>
-              </Link>
-              <DeleteTaskForm id={dataRow.id} />
-            </div>
-          </div>
-        ))
-      )
-      }
+          ))
+        )
+        }
+      </div>
     </main >
   );
 }

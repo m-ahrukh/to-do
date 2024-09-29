@@ -8,7 +8,7 @@ html {
 
 html.dark input {
     color: black;
-    box-shadow: 0 8px 10px -3px rgba(255, 255, 255, 0.9), 0 4px 6px -4px rgba(255, 255, 255, 06);
+    box-shadow: 0 8px 10px -3px rgba(192, 191, 191, 0.9), 0 4px 6px -4px rgba(255, 255, 255, 06);
 }
 
 body {
