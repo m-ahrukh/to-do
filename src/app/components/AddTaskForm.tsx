@@ -17,7 +17,7 @@ export function AddTaskForm() {
       const randomString = crypto.randomUUID();
       const { error } = await supabase
         .from('todo_app')
-        .insert([{ text: note, uuid: randomString }])
+        .insert([{ text: note, uuid: randomString, status: 'added' }])
       if (error) {
         console.error('Error inserting data:', error)
         return

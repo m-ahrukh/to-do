@@ -10,5 +10,6 @@ create database projects;
 CREATE TABLE todo_app (
     id SERIAL PRIMARY KEY,
     text TEXT NOT NULL,
-    uuid VARCHAR(36) UNIQUE NOT NULL DEFAULT gen_random_uuid()
+    uuid VARCHAR(36) UNIQUE NOT NULL DEFAULT gen_random_uuid(),
+    status varchar(10)
 );

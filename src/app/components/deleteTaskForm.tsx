@@ -16,7 +16,7 @@ export function DeleteTaskForm({id}:DeleteTaskFormProps) {
 
         const { error } = await supabase
             .from('todo_app')
-            .delete()
+            .update({ status: 'deleted' })
             .eq('id', id);
 
         if (error) {
