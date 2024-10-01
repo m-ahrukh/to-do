@@ -99,7 +99,7 @@ export default function RootLayout({
               </nav>
             </div>
           </header>
-          {children && React.cloneElement(children as React.ReactElement, {theme})}
+          {children}
       </body>
     </html>
   );

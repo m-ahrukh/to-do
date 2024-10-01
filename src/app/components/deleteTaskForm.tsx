@@ -8,6 +8,7 @@ interface DeleteTaskFormProps {
 }
 
 export function DeleteTaskForm({id}:DeleteTaskFormProps) {
+    
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
