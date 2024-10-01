@@ -45,9 +45,7 @@ export default function RootLayout({
         <meta name="description" content="Creating To Do Application using NextJs" />
         <link rel="icon" href="/app_icon.ico" sizes="any" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <header className={`w-full py-4 px-6 ${theme === 'dark' ? 'bg-gray-800' : 'bg-blue-500'}`}>
             <div className="flex justify-between items-center">
 

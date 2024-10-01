@@ -1,6 +1,7 @@
 'use client';
 
 import { supabase } from '@/utils/supabase/client';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 interface DeleteTaskFormProps {
     id: number; 
@@ -9,7 +10,6 @@ interface DeleteTaskFormProps {
 export function DeleteTaskForm({id}:DeleteTaskFormProps) {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("id: ", id)
 
         if (!id) return;
 
@@ -29,7 +29,8 @@ export function DeleteTaskForm({id}:DeleteTaskFormProps) {
     return (
         <form onSubmit={handleSubmit}>
             <input type='text' name="id" value={id} hidden />
-            <button className='bg-red-600 font-bold text-white p-2 rounded-sm' type='submit'>DELETE</button>
+        
+            <button className='bg-red-600 font-bold text-white p-2 rounded-sm' type='submit'><DeleteForeverOutlinedIcon /></button>
         </form>
     );
 }

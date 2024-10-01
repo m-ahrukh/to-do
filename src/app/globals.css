@@ -16,25 +16,20 @@ body {
     color: var(--text-color);
 }
 
-/* Light Theme */
 .light {
     --bg-color: white;
     --text-color: black;
 }
 
-/* Dark Theme */
 .dark {
     --bg-color: #1a1a1a;
     --text-color: white;
 }
 
-
-/* Toggle switch styles */
 label {
     cursor: pointer;
 }
 
-/* Sun and Moon Icon transitions */
 .sun {
     transform: translateX(1.5rem);
 }
