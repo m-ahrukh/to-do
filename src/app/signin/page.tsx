@@ -16,7 +16,8 @@ export default function SignIn() {
       email,
       password,
     })
-
+    
+    console.log(data)
     if (error) {
       setError(error.message)
     }
@@ -52,7 +53,7 @@ export default function SignIn() {
           Sign In
         </button>
         <p className="text-sm text-gray-600 dark:text-gray-400 mt-4 text-center">
-          Don’t have an account?{' '}
+          Don&apos;t have an account?{' '}
           <a href="/signup" className="text-blue-500 hover:underline">
             Sign Up
           </a>
