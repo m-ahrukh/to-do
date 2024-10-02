@@ -14,7 +14,7 @@ export default async function MainPage() {
         <p className='text-lg mb-8 max-w-2xl'>
           Our To-Do application helps you manage your tasks efficiently with an easy-to-use interface. 
           You can switch between dark and light themes based on your preference, and stay productive 
-          whether you're on the go or at your desk.
+          whether you&apos;re on the go or at your desk.
         </p>
         <div className='max-w-3xl mb-8'>
           <h3 className='text-xl font-bold mb-4'>Key Features:</h3>
