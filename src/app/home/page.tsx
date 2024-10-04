@@ -18,7 +18,7 @@ export default function MainPage() {
   const fetchTasks = async ()=>{
     const {data:userResponse, error:userError} = await supabase.auth.getUser();
     if (userError){
-      console.log('Error fetching user:', userError)
+      console.error('Error fetching user:', userError)
       return
     }
 
@@ -43,9 +43,12 @@ export default function MainPage() {
     }
     setLoading(false)
   }
-  useEffect(()=>{
-    fetchTasks()
-  }, [])
+
+
+  // Always call useEffect on component mount
+  useEffect(() => {
+    fetchTasks();
+  }, []);  // This useEffect should not be inside any condition or conditional return
 
   const handleTaskAdded = () =>{
     fetchTasks(); //Refetch tasks when a new task is added

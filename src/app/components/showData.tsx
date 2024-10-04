@@ -78,23 +78,20 @@ import { DeleteTaskForm } from './deleteTaskForm';
 import { TaskCompletion } from './TaskCompletion';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 
-interface ShowDataProps{
+interface ShowDataProps {
   tasks: DataRow[] | undefined // Allow for undefined initially
 }
 
-const ShowData: React.FC<ShowDataProps> = ({tasks = []}) => { // set a default value for tasks
+const ShowData: React.FC<ShowDataProps> = ({ tasks = [] }) => { // set a default value for tasks
   const [theme, setTheme] = useState('light');
 
-      if (tasks.length === 0) {
-        return <p className='text-center text-gray-500 mt-5'>Phew, there is nothing to do</p>;
-    }
-
   useEffect(() => {
-
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
-
   }, []);
+  if (tasks.length === 0) {
+    return <p className='text-center text-gray-500 mt-5'>Phew, there is nothing to do</p>;
+  }
 
   return (
     <div className={`border ${theme === 'dark' ? 'border-gray-700' : 'border-gray-300'} rounded-lg p-4 shadow-md`}>
