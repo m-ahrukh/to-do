@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import React from "react";
 import { supabase } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation"; 
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ export default function RootLayout({
 
   const [theme, setTheme] = useState('light');
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const router = useRouter();
 
   // Retrieve theme from local storage and check user authentication status
   useEffect(() => {
@@ -62,6 +64,7 @@ export default function RootLayout({
     } else {
       setIsAuthenticated(false) // Set the authentication state to false after logout
       console.log("User logged out successfully.");
+      router.push("/")
     }
   }
   return (
@@ -71,7 +74,7 @@ export default function RootLayout({
         <meta name="description" content="Creating To Do Application using NextJs" />
         <link rel="icon" href="/app_icon.ico" sizes="any" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
         {/* Header Section */}
         <header className={`w-full py-4 px-6 ${theme === 'dark' ? 'bg-gray-800' : 'bg-blue-500'}`}>
           <div className="flex justify-between items-center">
