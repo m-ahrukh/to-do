@@ -44,7 +44,6 @@ export default function MainPage() {
     setLoading(false)
   }
 
-
   // Always call useEffect on component mount
   useEffect(() => {
     fetchTasks();
@@ -64,6 +63,5 @@ export default function MainPage() {
       </div>
       {loading ? <p>Loading tasks...</p> : <ShowData tasks={tasks} />}
     </main >
-
   );
 }

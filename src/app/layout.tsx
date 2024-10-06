@@ -39,13 +39,22 @@ export default function RootLayout({
       const {
         data: { user },
       } = await supabase.auth.getUser();
-
       setIsAuthenticated(!!user); // Set isAuthenticated to true if user exists
-      console.log("user: ", user)
-      console.log("authenticatd: ", isAuthenticated)
     }
 
     checkUserStatus()
+
+     // Listen for changes in authentication state
+     const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setIsAuthenticated(!!session?.user);
+      }
+    );
+
+    // Cleanup listener on unmount
+    return () => {
+      subscription?.unsubscribe();
+    };
   }, []);
 
   const toggleTheme = () => {
