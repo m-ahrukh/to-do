@@ -3,7 +3,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import React from "react";
 import { supabase } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
@@ -27,6 +27,8 @@ export default function RootLayout({
   const [theme, setTheme] = useState("light");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false); // State for mobile menu
+  const [headerHeight, setHeaderHeight] = useState(0); // To store header height
+  const headerRef = useRef<HTMLDivElement>(null); // Reference to the header
   const router = useRouter();
 
   useEffect(() => {
@@ -56,6 +58,13 @@ export default function RootLayout({
       subscription?.unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    // Set header height after component mounts
+    if (headerRef.current) {
+      setHeaderHeight(headerRef.current.offsetHeight);
+    }
+  }, [headerRef]);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
@@ -87,7 +96,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         {/* Header Section */}
-        <header className={`w-full py-4 px-6 ${theme === "dark" ? "bg-gray-800" : "bg-blue-500"}`}>
+        <header ref={headerRef} className={`w-full py-4 px-6 ${theme === "dark" ? "bg-gray-800" : "bg-blue-500"}`}>
           <div className="flex justify-between items-center">
 
             {/* Logo */}
@@ -116,26 +125,23 @@ export default function RootLayout({
                   className={`w-14 h-8 ${theme === "dark" ? "bg-gray-700" : "bg-gray-300"} relative rounded-full`}
                 >
                   <span
-                    className={`absolute left-1 top-1 w-6 h-6 transition-transform duration-300 ${
-                      theme === "dark" ? "transform translate-x-6" : ""
-                    }`}
+                    className={`absolute left-1 top-1 w-6 h-6 transition-transform duration-300 ${theme === "dark" ? "transform translate-x-6" : ""
+                      }`}
                   ></span>
                 </div>
                 {/* Moon Image */}
                 <img
                   src="/moon.png"
                   alt="Moon"
-                  className={`absolute left-1 top-1 w-6 h-6 transition-opacity duration-300 ${
-                    theme === "dark" ? "opacity-0" : "opacity-100"
-                  }`}
+                  className={`absolute left-1 top-1 w-6 h-6 transition-opacity duration-300 ${theme === "dark" ? "opacity-0" : "opacity-100"
+                    }`}
                 />
                 {/* Sun Image */}
                 <img
                   src="/sun.png"
                   alt="Sun"
-                  className={`absolute left-8 top-1 w-6 h-6 transition-opacity duration-300 ${
-                    theme === "dark" ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`absolute left-8 top-1 w-6 h-6 transition-opacity duration-300 ${theme === "dark" ? "opacity-100" : "opacity-0"
+                    }`}
                 />
               </label>
 
@@ -192,26 +198,23 @@ export default function RootLayout({
                   className={`w-14 h-8 ${theme === "dark" ? "bg-gray-700" : "bg-gray-300"} relative rounded-full`}
                 >
                   <span
-                    className={`absolute left-1 top-1 w-6 h-6 transition-transform duration-300 ${
-                      theme === "dark" ? "transform translate-x-6" : ""
-                    }`}
+                    className={`absolute left-1 top-1 w-6 h-6 transition-transform duration-300 ${theme === "dark" ? "transform translate-x-6" : ""
+                      }`}
                   ></span>
                 </div>
                 {/* Moon Image */}
                 <img
                   src="/moon.png"
                   alt="Moon"
-                  className={`absolute left-1 top-1 w-6 h-6 transition-opacity duration-300 ${
-                    theme === "dark" ? "opacity-0" : "opacity-100"
-                  }`}
+                  className={`absolute left-1 top-1 w-6 h-6 transition-opacity duration-300 ${theme === "dark" ? "opacity-0" : "opacity-100"
+                    }`}
                 />
                 {/* Sun Image */}
                 <img
                   src="/sun.png"
                   alt="Sun"
-                  className={`absolute left-8 top-1 w-6 h-6 transition-opacity duration-300 ${
-                    theme === "dark" ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`absolute left-8 top-1 w-6 h-6 transition-opacity duration-300 ${theme === "dark" ? "opacity-100" : "opacity-0"
+                    }`}
                 />
               </label>
 
@@ -232,8 +235,11 @@ export default function RootLayout({
 
           {/* Mobile Menu Links */}
           {menuOpen && (
-            <div className="lg:hidden mt-4 space-y-2">
-              <ul className={`flex flex-col space-y-2 ${theme === "dark" ? "text-gray-300" : "text-white"}`}>
+            <div className={`lg:hidden fixed right-0 w-1/2 h-full p-4 shadow-lg transition-transform duration-300 ${theme === "dark" ? "bg-gray-800" : "bg-blue-500"}`}
+              style={{ top: `${headerHeight}px` }} // Setting the top position
+            >
+              {/* <div className="lg:hidden mt-4 space-y-2"> */}
+              <ul className={`flex flex-col space-y-4 ${theme === "dark" ? "text-gray-300" : "text-white"}`}>
                 {isAuthenticated ? (
                   <>
                     <li>
@@ -267,6 +273,7 @@ export default function RootLayout({
                   </>
                 )}
               </ul>
+              {/* </div> */}
             </div>
           )}
         </header>
