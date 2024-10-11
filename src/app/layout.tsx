@@ -235,11 +235,11 @@ export default function RootLayout({
 
           {/* Mobile Menu Links */}
           {menuOpen && (
-            <div className={`lg:hidden fixed right-0 w-1/2 h-full p-4 shadow-lg transition-transform duration-300 ${theme === "dark" ? "bg-gray-800" : "bg-blue-500"}`}
+            <div className={`lg:hidden fixed right-0 w-1/2 h-full p-4 shadow-lg transition-transform duration-300 bg-yellow-50`}
               style={{ top: `${headerHeight}px` }} // Setting the top position
             >
               {/* <div className="lg:hidden mt-4 space-y-2"> */}
-              <ul className={`flex flex-col space-y-4 ${theme === "dark" ? "text-gray-300" : "text-white"}`}>
+              <ul className={`flex flex-col space-y-4 text-black`}>
                 {isAuthenticated ? (
                   <>
                     <li>
