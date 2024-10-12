@@ -1,4 +1,3 @@
-//responsiveness pending
 'use client';
 
 import { supabase } from '@/utils/supabase/client';
@@ -29,10 +28,9 @@ export function DeleteTaskForm({ id }: DeleteTaskFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="inline">
       <input type='text' name="id" value={id} hidden />
-
-      <button className='bg-red-600 font-bold text-white p-2 rounded-sm' type='submit'><DeleteForeverOutlinedIcon /></button>
+      <button type='submit' className='bg-red-600 text-white p-2 rounded-md hover:bg-red-700 transition-colors duration-200 flex items-center justify-center w-full sm:w-auto'><DeleteForeverOutlinedIcon className="w-5 h-5"/></button>
     </form>
   );
 }

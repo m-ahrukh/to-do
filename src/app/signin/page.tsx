@@ -1,4 +1,3 @@
-//responsiveness pending
 'use client'
 
 import { supabase } from "@/utils/supabase/client"
@@ -11,7 +10,8 @@ export default function SignIn() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,

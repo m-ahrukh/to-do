@@ -1,4 +1,3 @@
-//responsiveness pending
 'use client';
 
 import { supabase } from '@/utils/supabase/client';
@@ -42,9 +41,11 @@ export function TaskCompletion({ id }: CompleteTaskFormProps) {
 
 
     return (
-        // <form onSubmit={handleToggleStatus}>
-            // <input type='text' name="id" value={id} hidden />
-            <button className='bg-green-600 font-bold text-white p-2 rounded-sm' type='button' onClick={handleToggleStatus}><TaskOutlinedIcon /></button>
-        // </form>
+        <button 
+            className='bg-green-600 text-white p-2 rounded-md hover:bg-green-700 transition-colors duration-200 flex items-center justify-center w-full sm:w-auto' 
+            onClick={handleToggleStatus} 
+            type='button'
+            aria-label="Mark Task as Completed">
+                <TaskOutlinedIcon className="w-5 h-5"/></button>
     );
 }

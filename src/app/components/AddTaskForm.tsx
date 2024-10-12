@@ -1,4 +1,3 @@
-//responsiveness pending
 'use client';
 import { useState } from 'react';
 import { supabase } from '@/utils/supabase/client';
@@ -43,9 +42,16 @@ export function AddTaskForm({ onTaskAdded }: { onTaskAdded: () => void }) {
   };
 
   return (
-    <form onSubmit={addTask} className="flex flex-col space-y-3">
-      <input type="text" placeholder="Enter your task..." value={task} name="note" onChange={(e) => setTask(e.target.value)} className="p-2 border rounded" />
-      <button type="submit" className="p-2 bg-blue-500 text-white rounded">
+    <form onSubmit={addTask} className="flex flex-col space-y-3 p-4 sm:p-6 lg:p-8 w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
+      <input
+        type="text"
+        placeholder="Enter your task..."
+        value={task} name="note"
+        onChange={(e) => setTask(e.target.value)}
+        className="p-3 sm:p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+      <button
+        type="submit"
+        className="p-3 sm:p-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200 w-full">
         Add Task
       </button>
     </form>

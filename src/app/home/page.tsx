@@ -1,4 +1,3 @@
-//responsiveness pending
 'use client'
 import { useEffect, useState } from 'react';
 import { AddTaskForm } from '../components/AddTaskForm';
@@ -54,15 +53,15 @@ export default function MainPage() {
     fetchTasks(); //Refetch tasks when a new task is added
   }
   return (
-    <main className=' mt-10 flex flex-col justify-center items-center '>
-      <h1 className='font-bold' style={{ fontSize: '24px' }}>To Do Application</h1>
-      <div className='mb-3 mx-5'>
-        <h1 className='text-center m-5 font-semibold'>
+    <main className='mt-10 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8'>
+      <h1 className='font-bold text-xl sm:text-2xl lg:text-3xl text-center mb-6'>To Do Application</h1>
+      <div className='w-full max-w-sm sm:max-w-md lg:max-w-lg mb-5'>
+        <h2 className='text-center text-lg sm:text-xl mb-5 font-semibold'>
           Add Task
-        </h1>
+        </h2>
         <AddTaskForm onTaskAdded={handleTaskAdded}/>
       </div>
-      {loading ? <p>Loading tasks...</p> : <ShowData tasks={tasks} />}
+      {loading ? <p className='text-gray-500 text-center'>Loading tasks...</p> : <ShowData tasks={tasks} />}
     </main >
   );
 }
