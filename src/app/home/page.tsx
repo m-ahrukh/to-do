@@ -1,3 +1,4 @@
+//responsiveness pending
 'use client'
 import { useEffect, useState } from 'react';
 import { AddTaskForm } from '../components/AddTaskForm';

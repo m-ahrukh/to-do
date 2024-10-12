@@ -1,37 +1,38 @@
+//responsiveness pending
 'use client';
 
 import { supabase } from '@/utils/supabase/client';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 interface DeleteTaskFormProps {
-    id: number; 
+  id: number;
 }
 
-export function DeleteTaskForm({id}:DeleteTaskFormProps) {
-    
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+export function DeleteTaskForm({ id }: DeleteTaskFormProps) {
 
-        if (!id) return;
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        const { error } = await supabase
-            .from('todo_app')
-            .update({ status: 'deleted' })
-            .eq('id', id);
+    if (!id) return;
 
-        if (error) {
-            console.error("Error deleting task:", error);
-            return;
-        }
+    const { error } = await supabase
+      .from('todo_app')
+      .update({ status: 'deleted' })
+      .eq('id', id);
 
-        window.location.reload();
-    };
+    if (error) {
+      console.error("Error deleting task:", error);
+      return;
+    }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input type='text' name="id" value={id} hidden />
-        
-            <button className='bg-red-600 font-bold text-white p-2 rounded-sm' type='submit'><DeleteForeverOutlinedIcon /></button>
-        </form>
-    );
+    window.location.reload();
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type='text' name="id" value={id} hidden />
+
+      <button className='bg-red-600 font-bold text-white p-2 rounded-sm' type='submit'><DeleteForeverOutlinedIcon /></button>
+    </form>
+  );
 }

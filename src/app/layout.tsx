@@ -281,7 +281,7 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
 
         <footer
-          className={`w-full p-4 mt-4 bg-blue-500 text-white text-center ${theme === "dark" ? "bg-gray-800" : "bg-blue-500"
+          className={`w-full p-4 bg-blue-500 text-white text-center ${theme === "dark" ? "bg-gray-800" : "bg-blue-500"
             }`}
         >
           <p className="text-sm">

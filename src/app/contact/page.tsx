@@ -1,3 +1,4 @@
+//responsiveness pending
 import React from 'react';
 import { ContactForm } from './contactForm';
 
