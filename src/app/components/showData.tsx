@@ -33,9 +33,10 @@ const ShowData: React.FC<ShowDataProps> = ({ tasks = [] }) => { // set a default
           </div>
           <div className='flex flex-row gap-2 sm:gap-4 items-center justify-end w-full sm:w-1/2'>
             <Link href={'/edit/' + dataRow.uuid}>
-              <button className='bg-blue-600 font-bold text-white p-2 rounded-md'>
-                <BorderColorOutlinedIcon />
+              <button className='bg-blue-600 hover:bg-blue-800 font-bold text-white p-2 rounded-md transition-colors duration-200'>
+                <BorderColorOutlinedIcon className="w-5 h-5"/>
               </button>
+
             </Link>
             <DeleteTaskForm id={dataRow.id} />
             <TaskCompletion id={dataRow.id} />

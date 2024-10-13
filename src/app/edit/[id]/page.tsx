@@ -1,4 +1,3 @@
-//responsiveness pending
 import { supabase } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 
@@ -40,16 +39,22 @@ export default async function Edit({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className='m-5 justify-center items-center'>
-        <h1 className='text-center mb-3 mx-5 font-semibold'>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
+      <div className='w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-md shadow-lg'>
+        <h1 className='text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-white'>
           Edit Task
         </h1>
-        <form action={editTask} className='flex flex-col justify-center items-center'>
-          <input type='text' name='note' id='note' placeholder='Add Note'
+        <form action={editTask} className='flex flex-col space-y-4'>
+          <input 
+          type='text' 
+          name='note' 
+          id='note' 
+          placeholder='Add Note'
             defaultValue={task.text}
-            className='shadow-lg rounded-md shadow-black h-10 p-3 w-[100%] mb-6' required />
-          <button type='submit' className='bg-orange-500 font-bold text-white hover:bg-red-600 p-3 rounded-md'>SUBMIT</button>
+            className='shadow-sm border rounded-md p-3 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:text-white' required />
+          <button 
+          type='submit' 
+          className='bg-orange-500 text-white font-bold p-3 rounded-md hover:bg-red-600 transition-colors'>SUBMIT</button>
         </form>
       </div>
     </div>

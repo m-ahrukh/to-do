@@ -101,7 +101,7 @@ export default function RootLayout({
 
             {/* Logo */}
             <div className={`font-bold text-2xl ${theme === "dark" ? "text-gray-100" : "text-white"}`}>
-              <Link href="/">
+              <Link href={isAuthenticated ? "/home" : "/"}>
                 <img
                   src={theme === "dark" ? "/logo_Dark_BG.png" : "/logo_Light_BG.png"}
                   alt="Logo"
