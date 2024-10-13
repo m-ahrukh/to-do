@@ -4,10 +4,18 @@ import { supabase } from '@/utils/supabase/client';
 
 export function AddTaskForm({ onTaskAdded }: { onTaskAdded: () => void }) {
   const [task, setTask] = useState('');
+   
+  // Capitalize the first letter of the task
+   const capitalizeFirstLetter = (task: string) => {
+    return task.charAt(0).toUpperCase() + task.slice(1);
+  };
 
   // Function to add a new task
   const addTask = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Capitalize the first letter before submitting
+     const formattedTask = capitalizeFirstLetter(task);
 
     // Check if user is authenticated
     const { data: userResponse, error: userError } = await supabase.auth.getUser();
@@ -29,7 +37,7 @@ export function AddTaskForm({ onTaskAdded }: { onTaskAdded: () => void }) {
 
     const { data, error } = await supabase
       .from('todo_app')
-      .insert([{ text: task, uuid: randomString, status: 'added', user_id: userId }]);
+      .insert([{ text: formattedTask, uuid: randomString, status: 'added', user_id: userId }]);
 
     if (error) {
       console.error('Error adding task:', error.message); // Log the error message

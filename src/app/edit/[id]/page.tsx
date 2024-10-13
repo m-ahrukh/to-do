@@ -34,7 +34,7 @@ export default async function Edit({ params }: { params: { id: string } }) {
         return;
       }
 
-      redirect('/');
+      redirect('/home');
     }
   }
 
