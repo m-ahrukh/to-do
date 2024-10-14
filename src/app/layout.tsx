@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import React from "react";
 import { supabase } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -123,10 +124,12 @@ export default function RootLayout({
             {/* Logo */}
             <div className={`font-bold text-2xl ${theme === "dark" ? "text-gray-100" : "text-white"}`}>
               <Link href={isAuthenticated ? "/home" : "/"}>
-                <img
+                <Image
                   src={theme === "dark" ? "/logo_Dark_BG.png" : "/logo_Light_BG.png"}
                   alt="Logo"
-                  className="h-10 w-10 inline-block mr-2"
+                  width={40}  // Base width
+                  height={40} // Base height
+                  className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 inline-block mr-2"
                 />
                 To Do App
               </Link>
@@ -151,18 +154,20 @@ export default function RootLayout({
                   ></span>
                 </div>
                 {/* Moon Image */}
-                <img
+                <Image
                   src="/moon.png"
                   alt="Moon"
-                  className={`absolute left-1 top-1 w-6 h-6 transition-opacity duration-300 ${theme === "dark" ? "opacity-0" : "opacity-100"
-                    }`}
+                  width={24}  // Base width
+                  height={24} // Base height
+                  className={`absolute left-1 top-1 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 transition-opacity duration-300 ${theme === "dark" ? "opacity-0" : "opacity-100"}}`}
                 />
                 {/* Sun Image */}
-                <img
+                <Image
                   src="/sun.png"
                   alt="Sun"
-                  className={`absolute left-8 top-1 w-6 h-6 transition-opacity duration-300 ${theme === "dark" ? "opacity-100" : "opacity-0"
-                    }`}
+                  width={24}  // Base width
+                  height={24} // Base height
+                  className={`absolute left-8 top-1 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 transition-opacity duration-300 ${theme === "dark" ? "opacity-100" : "opacity-0"}}`}
                 />
               </label>
 
@@ -224,16 +229,20 @@ export default function RootLayout({
                   ></span>
                 </div>
                 {/* Moon Image */}
-                <img
+                <Image
                   src="/moon.png"
                   alt="Moon"
+                  width={24}  // Base width
+                  height={24} // Base height
                   className={`absolute left-1 top-1 w-6 h-6 transition-opacity duration-300 ${theme === "dark" ? "opacity-0" : "opacity-100"
                     }`}
                 />
                 {/* Sun Image */}
-                <img
+                <Image
                   src="/sun.png"
                   alt="Sun"
+                  width={24}  // Base width
+                  height={24} // Base height
                   className={`absolute left-8 top-1 w-6 h-6 transition-opacity duration-300 ${theme === "dark" ? "opacity-100" : "opacity-0"
                     }`}
                 />
