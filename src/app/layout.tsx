@@ -66,6 +66,26 @@ export default function RootLayout({
     }
   }, [headerRef]);
 
+  useEffect(()=>{
+    const handleOutsideClick = (event : MouseEvent) =>{
+      //Check if the clicked element is outside the menu and button
+      if(menuOpen && headerRef.current && !headerRef.current.contains(event.target as Node)){
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen){
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else{
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+
+    //Cleanup the event listener
+    return() =>{
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [menuOpen]);
+
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -81,6 +101,7 @@ export default function RootLayout({
     } else {
       setIsAuthenticated(false); // Set the authentication state to false after logout
       console.log("User logged out successfully.");
+      setMenuOpen(false)
       router.push("/");
     }
   };
@@ -226,6 +247,10 @@ export default function RootLayout({
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
+                  onClick={(e)=>{
+                    e.stopPropagation(); //Prevent click from propagating and closing the menu
+                    setMenuOpen(!menuOpen)
+                  }}
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
@@ -243,12 +268,12 @@ export default function RootLayout({
                 {isAuthenticated ? (
                   <>
                     <li>
-                      <Link href="/about">
+                      <Link href="/about" onClick={() => setMenuOpen(false)}>
                         <button className="hover:underline">About</button>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/contact">
+                      <Link href="/contact" onClick={() => setMenuOpen(false)}>
                         <button className="hover:underline">Contact Us</button>
                       </Link>
                     </li>
@@ -261,12 +286,12 @@ export default function RootLayout({
                 ) : (
                   <>
                     <li>
-                      <Link href="/signin">
+                      <Link href="/signin" onClick={() => setMenuOpen(false)}>
                         <button className="hover:underline">Sign In</button>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/signup">
+                      <Link href="/signup" onClick={() => setMenuOpen(false)}>
                         <button className="hover:underline">Sign Up</button>
                       </Link>
                     </li>
